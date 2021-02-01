@@ -1,7 +1,9 @@
-import React from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
+import React from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import * as Yup from "yup";
+import { Formik } from "formik";
 import {
   Box,
   Button,
@@ -9,25 +11,32 @@ import {
   Link,
   TextField,
   Typography,
-  makeStyles
-} from '@material-ui/core';
+  makeStyles,
+} from "@material-ui/core";
 // import FacebookIcon from 'src/icons/Facebook';
 // import GoogleIcon from 'src/icons/Google';
-import Page from 'src/components/Page';
-
+import Page from "src/components/Page";
+import { login } from "../../store/action/signupaction";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
-    height: '100%',
+    height: "100%",
     paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3)
-  }
+    paddingTop: theme.spacing(3),
+  },
 }));
 
 const LoginView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
+  const handleSubmit = (val) => {
+    console.log("val", val);
+    // props.login({
+    //   email: val.Email,
+    //   Password: val.Password,
+    // });
+  };
   return (
     <Page className={classes.root} title="Login">
       <Box
@@ -39,18 +48,18 @@ const LoginView = () => {
         <Container maxWidth="sm">
           <Formik
             initialValues={{
-              email: 'demo@devias.io',
-              password: 'Password123'
+              email: "demo@devias.io",
+              password: "Password123",
             }}
             validationSchema={Yup.object().shape({
               email: Yup.string()
-                .email('Must be a valid email')
+                .email("Must be a valid email")
                 .max(255)
-                .required('Email is required'),
-              password: Yup.string().max(255).required('Password is required')
+                .required("Email is required"),
+              password: Yup.string().max(255).required("Password is required"),
             })}
             onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
+              navigate("/app/dashboard", { replace: true });
             }}
           >
             {({
@@ -60,14 +69,14 @@ const LoginView = () => {
               handleSubmit,
               isSubmitting,
               touched,
-              values
+              values,
             }) => (
               <form onSubmit={handleSubmit}>
                 <Box mb={3}>
                   <Typography
                     color="textPrimary"
                     variant="h2"
-                    style={{ textAlign: 'center' }}
+                    style={{ textAlign: "center" }}
                   >
                     Admin Sign in
                   </Typography>
@@ -107,6 +116,7 @@ const LoginView = () => {
                     size="large"
                     type="submit"
                     variant="contained"
+                    onClick={handleSubmit}
                   >
                     Sign in now
                   </Button>
@@ -125,5 +135,8 @@ const LoginView = () => {
     </Page>
   );
 };
-
-export default LoginView;
+const mapStateToProps = ({ LoginReducer }) => {
+  return { _login: LoginReducer };
+};
+// export default withRouter() LoginView;
+export default connect(mapStateToProps, login)(LoginView);
