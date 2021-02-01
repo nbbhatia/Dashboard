@@ -12,6 +12,7 @@ export function* signUpSaga(data) {
   }
 }
 export function* loginSaga(data) {
+  console.log("data saga", data);
   try {
     const response = yield call(LoginService, data);
 
