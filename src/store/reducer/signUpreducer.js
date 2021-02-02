@@ -1,7 +1,7 @@
 import * as types from "../action.type";
 export const SignUpReducer = (state = {}, action) => {
   const response = action.data;
-  console.log("response", response);
+  console.log("SignUpReducer", response);
   switch (action.type) {
     case types.SIGN_UP_SUCCESS:
       return response;
@@ -13,7 +13,7 @@ export const SignUpReducer = (state = {}, action) => {
 };
 export const LoginReducer = (state = {}, action) => {
   const response = action.data;
-  console.log("responseLoginReducer", response);
+
   switch (action.type) {
     case types.LOGIN_SUCCESS:
       return response;

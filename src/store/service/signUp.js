@@ -1,5 +1,6 @@
 import axios from "axios";
 export const signUp = (req) => {
+  console.log("req", req);
   let headers = new Headers();
   headers.append("Content-Type", "application/json");
   headers.append("Accept", "application/json");

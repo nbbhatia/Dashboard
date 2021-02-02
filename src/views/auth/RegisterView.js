@@ -1,162 +1,114 @@
-import React from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import {
-  Box,
-  Button,
-  Container,
-  Link,
-  TextField,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
-import Page from 'src/components/Page';
+import React, { Component } from "react";
+import { Formik } from "formik";
+import { Grid, Typography, Drawer, IconButton } from "@material-ui/core";
+// import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import { withStyles } from "@material-ui/core/styles";
+import Form from "./registerform";
+// import { validation } from "./validation.js";
+import { signUp } from "../../store/action/signupaction";
+const style = (theme) => ({
+  paper: {
+    background: "#fff",
+    width: "65%",
+    padding: 32,
+    [theme.breakpoints.down("sm")]: {
+      width: "inherit",
+      height: "90%",
+    },
+  },
+  closeButton: {
+    height: 0,
+    [theme.breakpoints.down("sm")]: {
+      height: "100%",
+    },
+  },
+  formText: {
+    fontSize: theme.typography.h5.fontSize,
+    color: theme.palette.primary.dark,
+    fontWeight: theme.typography.fontWeightBold,
+    fontFamily: "Nunito Sans",
+    // width: 460,
+    paddingBottom: 40,
+    [theme.breakpoints.down("sm")]: {
+      width: "auto",
+    },
+  },
+  blessingText: {
+    fontSize: theme.typography.body1.fontSize,
+    color: theme.palette.secondary.main,
+    fontWeight: theme.typography.fontWeightBold,
+    fontFamily: "Nunito Sans",
+    width: "max-content",
+  },
+  ThanksGrid: {
+    display: "block",
+  },
+});
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    height: '100%',
-    paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3)
-  }
-}));
+class signUpForm extends Component {
+  state = {
+    submit: false,
+    resume: "",
+    login: false,
+  };
 
-const RegisterView = () => {
-  const classes = useStyles();
-  const navigate = useNavigate();
+  render() {
+    const { open, close, classes, _signUp, jobTitle } = this.props;
 
-  return (
-    <Page className={classes.root} title="Register">
-      <Box
-        display="flex"
-        flexDirection="column"
-        height="100%"
-        justifyContent="center"
-      >
-        <Container maxWidth="sm">
+    const initialval = {
+      email: "",
+      firstName: "",
+      lastName: "",
+      password: "",
+    };
+
+    const handleSubmit = (val) => {
+      console.log("valregister", val);
+      this.props.signUp({
+        email: val.email,
+        fullName: val.firstName,
+        lastName: val.lastName,
+        Password: val.password,
+      });
+
+      this.setState({
+        submit: true,
+      });
+    };
+
+    return (
+      <Grid md={12} sm={12} xs={12} item container justify="center">
+        <Grid md={8} item container justify="center">
           <Formik
-            initialValues={{
-              email: '',
-              firstName: '',
-              lastName: '',
-              password: '',
-              policy: false
-            }}
-            validationSchema={Yup.object().shape({
-              email: Yup.string()
-                .email('Must be a valid email')
-                .max(255)
-                .required('Email is required'),
-              firstName: Yup.string()
-                .max(255)
-                .required('First name is required'),
-              lastName: Yup.string().max(255).required('Last name is required'),
-              password: Yup.string().max(255).required('password is required'),
-              policy: Yup.boolean().oneOf([true], 'This field must be checked')
-            })}
-            onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
-            }}
+            initialValues={initialval}
+            onSubmit={handleSubmit}
+            // validationSchema={Yup.object().shape({
+            //   email: Yup.string()
+            //     .email("Must be a valid email")
+            //     .max(255)
+            //     .required("Email is required"),
+            //   firstName: Yup.string()
+            //     .max(255)
+            //     .required("First name is required"),
+            //   lastName: Yup.string().max(255).required("Last name is required"),
+            //   password: Yup.string().max(255).required("password is required"),
+            //   policy: Yup.boolean().oneOf([true], "This field must be checked"),
+            // })}
+            // onSubmit={() => {
+            //   navigate("/app/dashboard", { replace: true });
+            // }}
           >
-            {({
-              errors,
-              handleBlur,
-              handleChange,
-              handleSubmit,
-              isSubmitting,
-              touched,
-              values
-            }) => (
-              <form onSubmit={handleSubmit}>
-                <Box mb={3}>
-                  <Typography color="textPrimary" variant="h2">
-                    Create new account
-                  </Typography>
-                  <Typography
-                    color="textSecondary"
-                    gutterBottom
-                    variant="body2"
-                  >
-                    Use your email to create new account
-                  </Typography>
-                </Box>
-                <TextField
-                  error={Boolean(touched.firstName && errors.firstName)}
-                  fullWidth
-                  helperText={touched.firstName && errors.firstName}
-                  label="First name"
-                  margin="normal"
-                  name="firstName"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.firstName}
-                  variant="outlined"
-                />
-                <TextField
-                  error={Boolean(touched.lastName && errors.lastName)}
-                  fullWidth
-                  helperText={touched.lastName && errors.lastName}
-                  label="Last name"
-                  margin="normal"
-                  name="lastName"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.lastName}
-                  variant="outlined"
-                />
-                <TextField
-                  error={Boolean(touched.email && errors.email)}
-                  fullWidth
-                  helperText={touched.email && errors.email}
-                  label="Email Address"
-                  margin="normal"
-                  name="email"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  type="email"
-                  value={values.email}
-                  variant="outlined"
-                />
-                <TextField
-                  error={Boolean(touched.password && errors.password)}
-                  fullWidth
-                  helperText={touched.password && errors.password}
-                  label="Password"
-                  margin="normal"
-                  name="password"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  type="password"
-                  value={values.password}
-                  variant="outlined"
-                />
-
-                <Box my={2}>
-                  <Button
-                    color="primary"
-                    disabled={isSubmitting}
-                    fullWidth
-                    size="large"
-                    type="submit"
-                    variant="contained"
-                  >
-                    Sign up now
-                  </Button>
-                </Box>
-                <Typography color="textSecondary" variant="body1">
-                  Have an account?
-                  <Link component={RouterLink} to="/login" variant="h6">
-                    Sign in
-                  </Link>
-                </Typography>
-              </form>
-            )}
+            {(props) => <Form {...props} />}
           </Formik>
-        </Container>
-      </Box>
-    </Page>
-  );
+        </Grid>
+      </Grid>
+    );
+  }
+}
+const mapStateToProps = ({ SignUpReducer }) => {
+  return { _signUp: SignUpReducer };
 };
-
-export default RegisterView;
+export default connect(mapStateToProps, { signUp })(
+  withStyles(style)(signUpForm)
+);

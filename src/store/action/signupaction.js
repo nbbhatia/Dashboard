@@ -29,7 +29,6 @@ export const login = (data) => {
   };
 };
 export const loginSucess = (data) => {
-  console.log("datasignUpSuccess", data);
   return {
     type: types.LOGIN_SUCCESS,
     data,

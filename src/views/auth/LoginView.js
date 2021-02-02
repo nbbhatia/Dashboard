@@ -4,7 +4,6 @@ import { Grid, Typography, Drawer, IconButton } from "@material-ui/core";
 // import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
-
 import Form from "./form";
 // import { validation } from "./validation.js";
 import { login } from "../../store/action/signupaction";
@@ -90,7 +89,6 @@ class signUpForm extends Component {
             initialValues={initialval}
             close={close}
             onSubmit={handleSubmit}
-            // validationSchema={validation}
             response={this.state.login}
           >
             {(props) => (

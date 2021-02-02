@@ -11,6 +11,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import Page from "src/components/Page";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
@@ -20,12 +21,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginView = (props) => {
+const RegisterForm = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
-
   let {
-    values: { email, password },
+    values: { email, password, firstName, lastName },
     errors,
     touched,
     handleBlur,
@@ -34,7 +34,7 @@ const LoginView = (props) => {
     handleChange,
   } = props;
   return (
-    <Page className={classes.root} title="Login">
+    <Page className={classes.root} title="Register">
       <Box
         display="flex"
         flexDirection="column"
@@ -44,15 +44,37 @@ const LoginView = (props) => {
         <Container maxWidth="sm">
           <form onSubmit={handleSubmit}>
             <Box mb={3}>
-              <Typography
-                color="textPrimary"
-                variant="h2"
-                style={{ textAlign: "center" }}
-              >
-                Admin Sign in
+              <Typography color="textPrimary" variant="h2">
+                Create new account
+              </Typography>
+              <Typography color="textSecondary" gutterBottom variant="body2">
+                Use your email to create new account
               </Typography>
             </Box>
-
+            <TextField
+              error={Boolean(touched.firstName && errors.firstName)}
+              fullWidth
+              helperText={touched.firstName && errors.firstName}
+              label="First name"
+              margin="normal"
+              name="firstName"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={firstName}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(touched.lastName && errors.lastName)}
+              fullWidth
+              helperText={touched.lastName && errors.lastName}
+              label="Last name"
+              margin="normal"
+              name="lastName"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={lastName}
+              variant="outlined"
+            />
             <TextField
               error={Boolean(touched.email && errors.email)}
               fullWidth
@@ -79,6 +101,7 @@ const LoginView = (props) => {
               value={password}
               variant="outlined"
             />
+
             <Box my={2}>
               <Button
                 color="primary"
@@ -87,13 +110,13 @@ const LoginView = (props) => {
                 type="submit"
                 variant="contained"
               >
-                Sign in now
+                Sign up now
               </Button>
             </Box>
             <Typography color="textSecondary" variant="body1">
-              Don&apos;t have an account?
-              <Link component={RouterLink} to="/register" variant="h6">
-                Sign up
+              Have an account?
+              <Link component={RouterLink} to="/login" variant="h6">
+                Sign in
               </Link>
             </Typography>
           </form>
@@ -102,5 +125,8 @@ const LoginView = (props) => {
     </Page>
   );
 };
-
-export default LoginView;
+// const mapStateToProps = ({ LoginReducer }) => {
+//   return { _login: LoginReducer };
+// };
+// export default withRouter() LoginView;
+export default RegisterForm;
