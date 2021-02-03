@@ -68,10 +68,9 @@ class signUpForm extends Component {
     };
 
     const handleSubmit = (val) => {
-      console.log("val", val);
       this.props.login({
         email: val.email,
-        Password: val.password,
+        password: val.password,
       });
 
       this.setState({

@@ -35,4 +35,11 @@ AdminSchema.methods.generateAuthToken = async function () {
     console.log("err", err);
   }
 };
+// password hashing
+AdminSchema.pre("save", async function (next) {
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
+  next();
+});
 module.exports = model("Admin", AdminSchema);

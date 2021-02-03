@@ -25,7 +25,7 @@ export const LoginService = (req) => {
   return axios({
     withCredentials: true,
     method: "POST",
-    url: "http://localhost:8086/login",
+    url: "http://localhost:8000/api/auth/login",
     data: req.data,
   })
     .then((response) => {
