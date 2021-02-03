@@ -7,4 +7,5 @@ apiRoutes.get("/", (req, res) => {
 
 apiRoutes.use("/auth", authRoutes);
 
+
 module.exports = apiRoutes;

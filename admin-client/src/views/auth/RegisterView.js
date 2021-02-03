@@ -54,7 +54,7 @@ class signUpForm extends Component {
   };
 
   render() {
-    const { open, close, classes, _signUp, jobTitle } = this.props;
+    // const { open, close, classes, _signUp, jobTitle } = this.props;
 
     const initialval = {
       email: "",

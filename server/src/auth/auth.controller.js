@@ -20,6 +20,15 @@ const registration = async (req, res, next) => {
     return next(err);
   }
 };
+const getAdmin = async (req, res, next) => {
+  try {
+    const getData = await AdminModel.find();
+    return res.send(getData);
+  } catch (err) {
+    return next(err);
+  }
+};
 module.exports = {
   registration,
+  getAdmin,
 };
