@@ -9,7 +9,7 @@ export const signUp = (req) => {
   return axios({
     withCredentials: true,
     method: "POST",
-    url: "http://localhost:8086/createUser",
+    url: "http://localhost:8000/api/auth/AdminRegistartion",
     data: req.data,
 
     headers: headers,
