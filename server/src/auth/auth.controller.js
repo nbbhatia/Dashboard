@@ -49,7 +49,7 @@ const login = async (req, res, next) => {
       });
     }
     const isMatch = await bcrypt.compareSync(password, admin.password);
-    console.log("isMatch", isMatch);
+
     if (!isMatch) {
       return res.status(303).json({
         sucess: false,
@@ -74,9 +74,61 @@ const login = async (req, res, next) => {
     return next(err);
   }
 };
+// const authCheck = async (res, req, next) => {
+//   try {
+//     const { token } = res.cookies;
+
+//     console.log("token", token);
+//     if (token === null) {
+//       return res.sendStatus(401);
+//     }
+//     jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
+//       if (err) {
+//         return res.sendStatus(403);
+//       }
+//       req.user = user;
+//       // return res.send(req.user);
+//       // console.log("req.user", req.user);
+//       //   return res.status(200).json({
+//       //     success: true,
+//       //     message: "Login successful",
+//       //     user: req.user,
+//       //   });
+//     });
+//   } catch (err) {
+//     return next(err);
+//   }
+// };
+const authCheck = async (req, res, next) => {
+  try {
+    const { token } = req.cookies;
+    console.log("token", token);
+    if (token == null) {
+      return res.sendStatus(401).json({
+        message: "user not found",
+      });
+    }
+
+    jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+      req.user = user;
+      return res.status(200).json({
+        success: true,
+        message: "Login successful",
+        user: req.user,
+      });
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   registration,
   getAdmin,
   getAdminById,
   login,
+  authCheck,
 };
