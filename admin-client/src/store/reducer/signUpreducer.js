@@ -23,3 +23,16 @@ export const LoginReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const authCheckReducer = (state = {}, action) => {
+  const response = action.data;
+
+  switch (action.type) {
+    case types.AUTH_CHECK_SUCCESS:
+      return response;
+    case types.AUTH_CHECK_ERROR:
+      return state;
+    default:
+      return state;
+  }
+};

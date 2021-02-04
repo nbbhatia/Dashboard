@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import Form from "./form";
 // import { validation } from "./validation.js";
-import { login } from "../../store/action/signupaction";
+import { login, authCheck } from "../../store/action/signupaction";
 const style = (theme) => ({
   paper: {
     background: "#fff",
@@ -52,10 +52,12 @@ class signUpForm extends Component {
     resume: "",
     login: false,
   };
-
+  componentDidMount = () => {
+    this.props.authCheck();
+  };
   render() {
-    const { open, close, classes, _login, jobTitle } = this.props;
-
+    const { open, close, classes, _login, jobTitle, _auth } = this.props;
+    console.log("auth", _auth);
     const initialval = {
       email: "",
       password: "",
@@ -99,9 +101,9 @@ class signUpForm extends Component {
     );
   }
 }
-const mapStateToProps = ({ LoginReducer }) => {
-  return { _login: LoginReducer };
+const mapStateToProps = ({ LoginReducer, authCheckReducer }) => {
+  return { _login: LoginReducer, _auth: authCheckReducer };
 };
-export default connect(mapStateToProps, { login })(
+export default connect(mapStateToProps, { login, authCheck })(
   withStyles(style)(signUpForm)
 );

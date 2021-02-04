@@ -41,3 +41,24 @@ export const loginError = (data) => {
     data,
   };
 };
+// auth check
+export const authCheck = (data) => {
+  console.log("data", data);
+  return {
+    type: types.AUTH_CHECK,
+    data,
+  };
+};
+export const authCheckSucess = (data) => {
+  return {
+    type: types.AUTH_CHECK_SUCCESS,
+    data,
+  };
+};
+
+export const authCheckError = (data) => {
+  return {
+    type: types.AUTH_CHECK_ERROR,
+    data,
+  };
+};

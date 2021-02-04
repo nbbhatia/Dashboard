@@ -35,3 +35,17 @@ export const LoginService = (req) => {
       return err.response;
     });
 };
+
+export const authCheckService = (req) => {
+  return axios({
+    withCredentials: true,
+    method: "GET",
+    url: "http://localhost:8000/api/auth/authCheck",
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      return err.response;
+    });
+};
