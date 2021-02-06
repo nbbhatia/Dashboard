@@ -20,6 +20,10 @@ export function* loginSaga(data) {
     const response = yield call(LoginService, data);
 
     yield put(loginSucess(response.data));
+    // console.log("response.data", response.data.sucess);
+    if (response.data.sucess) {
+      window.location.replace("/app/dashboard");
+    }
   } catch (error) {
     yield put({ type: types.LOGIN_ERROR, error });
   }

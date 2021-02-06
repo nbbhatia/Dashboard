@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, Typography, Drawer, IconButton } from "@material-ui/core";
-// import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import Form from "./form";
@@ -46,64 +47,60 @@ const style = (theme) => ({
   },
 });
 
-class signUpForm extends Component {
-  state = {
-    submit: false,
-    resume: "",
-    login: false,
+const SignUpForm = (props) => {
+  const [submit, setsubmit] = useState(false);
+  const [resume, setresume] = useState();
+  const [login, setlogin] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const authStatus = useSelector((state) => state.LoginReducer);
+
+  // useEffect(() => {
+  //   dispatch(authCheck());
+  // }, []);
+
+  const { close, classes, _auth } = props;
+
+  const initialval = {
+    email: "",
+    password: "",
   };
-  componentDidMount = () => {
-    this.props.authCheck();
+
+  const handleFile = (url) => {
+    setresume(url);
   };
-  render() {
-    const { open, close, classes, _login, jobTitle, _auth } = this.props;
-    console.log("auth", _auth);
-    const initialval = {
-      email: "",
-      password: "",
-    };
 
-    const handleFile = (url) => {
-      this.setState({
-        resume: url,
-      });
-    };
+  const handleSubmit = (val) => {
+    props.login({
+      email: val.email,
+      password: val.password,
+    });
+    // dispatch(authCheck());
+    setsubmit(true);
+    // if (authStatus.sucess) {
+    //   navigate("/app/dashboard");
+    // }
+  };
 
-    const handleSubmit = (val) => {
-      this.props.login({
-        email: val.email,
-        password: val.password,
-      });
-
-      this.setState({
-        submit: true,
-      });
-    };
-
-    return (
-      <Grid md={12} sm={12} xs={12} item container justify="center">
-        <Grid md={8} item container justify="center">
-          <Grid md={12} container item justify="center">
-            <Typography style={{ fontSize: 20 }}>Login</Typography>
-          </Grid>
-          <Formik
-            initialValues={initialval}
-            close={close}
-            onSubmit={handleSubmit}
-            response={this.state.login}
-          >
-            {(props) => (
-              <Form {...props} ResumeFile={(url) => handleFile(url)} />
-            )}
-          </Formik>
-        </Grid>
+  return (
+    <Grid md={12} sm={12} xs={12} item container justify="center">
+      <Grid md={8} item container justify="center" style={{ marginTop: 100 }}>
+        <Formik
+          initialValues={initialval}
+          close={close}
+          onSubmit={handleSubmit}
+          response={login}
+          auth={_auth}
+        >
+          {(props) => <Form {...props} ResumeFile={(url) => handleFile(url)} />}
+        </Formik>
       </Grid>
-    );
-  }
-}
+    </Grid>
+  );
+};
 const mapStateToProps = ({ LoginReducer, authCheckReducer }) => {
   return { _login: LoginReducer, _auth: authCheckReducer };
 };
 export default connect(mapStateToProps, { login, authCheck })(
-  withStyles(style)(signUpForm)
+  withStyles(style)(SignUpForm)
 );

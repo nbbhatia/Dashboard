@@ -1,6 +1,6 @@
 import React from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
+
 import {
   Box,
   Button,
@@ -32,7 +32,13 @@ const LoginView = (props) => {
     isSubmitting,
     handleSubmit,
     handleChange,
+    auth,
   } = props;
+
+  // const handleSubmit = () => {
+  //   console.log("auth", auth);
+  //   navigate("/app/dashboard");
+  // };
   return (
     <Page className={classes.root} title="Login">
       <Box

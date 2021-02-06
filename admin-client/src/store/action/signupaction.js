@@ -8,7 +8,6 @@ export const signUp = (data) => {
 };
 
 export const signUpSuccess = (data) => {
-  console.log("datasignUpSuccess", data);
   return {
     type: types.SIGN_UP_SUCCESS,
     data,
@@ -43,7 +42,6 @@ export const loginError = (data) => {
 };
 // auth check
 export const authCheck = (data) => {
-  console.log("data", data);
   return {
     type: types.AUTH_CHECK,
     data,
