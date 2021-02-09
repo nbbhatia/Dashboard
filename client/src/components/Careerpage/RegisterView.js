@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import Form from "./registerform";
 // import { validation } from "./validation.js";
-// import { signUp } from "../../store/action/signupaction";
+import { login } from "../../store/action/signupaction";
 const style = (theme) => ({
   paper: {
     background: "#fff",
@@ -63,11 +63,11 @@ class signUpForm extends Component {
     };
 
     const handleSubmit = (val) => {
-      // this.props.signUp({
-      //   email: val.email,
-      //   name: val.firstName,
-      //   password: val.password,
-      // });
+      this.props.signUp({
+        email: val.email,
+        name: val.firstName,
+        password: val.password,
+      });
 
       this.setState({
         submit: true,
@@ -103,10 +103,10 @@ class signUpForm extends Component {
     );
   }
 }
-// const mapStateToProps = ({ SignUpReducer }) => {
-//   return { _signUp: SignUpReducer };
-// };
-// export default connect(mapStateToProps, { signUp })(
-//   withStyles(style)(signUpForm)
-// );
-export default signUpForm;
+const mapStateToProps = ({ SignUpReducer }) => {
+  return { _signUp: SignUpReducer };
+};
+export default connect(mapStateToProps, { login })(
+  withStyles(style)(signUpForm)
+);
+// export default signUpForm;
