@@ -48,3 +48,25 @@ export const authCheckService = (req) => {
       return err.response;
     });
 };
+
+export const jobApply = (req) => {
+  console.log("req", req);
+  let headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  headers.append("Accept", "application/json");
+  headers.append("Origin", "*");
+
+  return axios({
+    withCredentials: true,
+    method: "POST",
+    url: "http://localhost:8000/api/career/apply",
+    data: req.data,
+    headers: headers,
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      return err.response;
+    });
+};

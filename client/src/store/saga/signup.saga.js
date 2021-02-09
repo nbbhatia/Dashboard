@@ -1,9 +1,15 @@
 import { put, call } from "redux-saga/effects";
-import { signUp, LoginService, authCheckService } from "../service/signUp";
+import {
+  signUp,
+  LoginService,
+  authCheckService,
+  jobApply,
+} from "../service/signUp";
 import {
   signUpSuccess,
   loginSucess,
   authCheckSucess,
+  jobApplySuccessAction,
 } from "../action/signupaction";
 import * as types from "../action.type";
 export function* signUpSaga(data) {
@@ -35,5 +41,14 @@ export function* authCheckSaga(data) {
     yield put(authCheckSucess(response.data));
   } else {
     yield put({ type: types.AUTH_CHECK_ERROR, response });
+  }
+}
+export function* jobApplySaga(data) {
+  try {
+    const response = yield call(jobApply, data);
+
+    yield put(jobApplySuccessAction(response.data));
+  } catch (error) {
+    yield put({ type: types.APPLY_ERROR, error });
   }
 }

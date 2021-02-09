@@ -60,3 +60,23 @@ export const authCheckError = (data) => {
     data,
   };
 };
+
+export const jobApplyAction = (data) => {
+  return {
+    type: types.APPLY,
+    data,
+  };
+};
+
+export const jobApplySuccessAction = (data) => {
+  return {
+    type: types.APPLY_SUCCESS,
+    data,
+  };
+};
+export const jobApplyErrorAction = (data) => {
+  return {
+    type: types.APPLY_ERROR,
+    data,
+  };
+};

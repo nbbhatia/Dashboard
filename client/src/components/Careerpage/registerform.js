@@ -23,7 +23,16 @@ const RegisterForm = (props) => {
   // const classes = useStyles();
   // const navigate = useNavigate();
   let {
-    values: { email, password, firstName, lastName },
+    values: {
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      Qualification,
+      totalExperince,
+      currentCTC,
+      expectedCTC,
+    },
     errors,
     touched,
     handleBlur,
@@ -58,6 +67,7 @@ const RegisterForm = (props) => {
             value={firstName}
             variant="outlined"
           />
+
           <TextField
             error={Boolean(touched.lastName && errors.lastName)}
             fullWidth
@@ -84,16 +94,64 @@ const RegisterForm = (props) => {
             variant="outlined"
           />
           <TextField
-            error={Boolean(touched.password && errors.password)}
+            // error={Boolean(touched.email && errors.email)}
             fullWidth
-            helperText={touched.password && errors.password}
-            label="Password"
+            // helperText={touched.email && errors.email}
+            label="phoneNumber"
             margin="normal"
-            name="password"
+            name="phoneNumber"
             onBlur={handleBlur}
             onChange={handleChange}
-            type="password"
-            value={password}
+            value={phoneNumber}
+            variant="outlined"
+          />
+
+          <TextField
+            // error={Boolean(touched.email && errors.email)}
+            fullWidth
+            // helperText={touched.email && errors.email}
+            label="Qualification"
+            margin="normal"
+            name="Qualification"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={Qualification}
+            variant="outlined"
+          />
+          <TextField
+            // error={Boolean(touched.email && errors.email)}
+            fullWidth
+            // helperText={touched.email && errors.email}
+            label="totalExperince"
+            margin="normal"
+            name="totalExperince"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={totalExperince}
+            variant="outlined"
+          />
+          <TextField
+            // error={Boolean(touched.email && errors.email)}
+            fullWidth
+            // helperText={touched.email && errors.email}
+            label="currentCTC"
+            margin="normal"
+            name="currentCTC"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={currentCTC}
+            variant="outlined"
+          />
+          <TextField
+            // error={Boolean(touched.email && errors.email)}
+            fullWidth
+            // helperText={touched.email && errors.email}
+            label="expectedCTC"
+            margin="normal"
+            name="expectedCTC"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={expectedCTC}
             variant="outlined"
           />
 

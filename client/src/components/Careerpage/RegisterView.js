@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import Form from "./registerform";
 // import { validation } from "./validation.js";
-import { login } from "../../store/action/signupaction";
+import { jobApplyAction } from "../../store/action/signupaction";
 const style = (theme) => ({
   paper: {
     background: "#fff",
@@ -54,19 +54,30 @@ class signUpForm extends Component {
   };
 
   render() {
-    // const { open, close, classes, _signUp, jobTitle } = this.props;
-
+    const { _apply } = this.props;
+    console.log("_apply", _apply);
     const initialval = {
+      firstName: "",
+      lastName: "",
       email: "",
-      name: "",
-      password: "",
+      phoneNumber: "",
+      Qualification: "",
+      totalExperince: "",
+      currentCTC: "",
+      expectedCTC: "",
     };
 
     const handleSubmit = (val) => {
-      this.props.signUp({
+      console.log("val", val);
+      this.props.jobApplyAction({
+        firstName: val.firstName,
+        lastName: val.lastName,
         email: val.email,
-        name: val.firstName,
-        password: val.password,
+        phoneNumber: val.phoneNumber,
+        Qualification: val.Qualification,
+        totalExperince: val.totalExperince,
+        currentCTC: val.currentCTC,
+        expectedCTC: val.expectedCTC,
       });
 
       this.setState({
@@ -77,25 +88,7 @@ class signUpForm extends Component {
     return (
       <Grid md={12} sm={12} xs={12} item container justify="center">
         <Grid md={8} item container justify="center">
-          <Formik
-            initialValues={initialval}
-            onSubmit={handleSubmit}
-            // validationSchema={Yup.object().shape({
-            //   email: Yup.string()
-            //     .email("Must be a valid email")
-            //     .max(255)
-            //     .required("Email is required"),
-            //   firstName: Yup.string()
-            //     .max(255)
-            //     .required("First name is required"),
-            //   lastName: Yup.string().max(255).required("Last name is required"),
-            //   password: Yup.string().max(255).required("password is required"),
-            //   policy: Yup.boolean().oneOf([true], "This field must be checked"),
-            // })}
-            // onSubmit={() => {
-            //   navigate("/app/dashboard", { replace: true });
-            // }}
-          >
+          <Formik initialValues={initialval} onSubmit={handleSubmit}>
             {(props) => <Form {...props} />}
           </Formik>
         </Grid>
@@ -103,10 +96,9 @@ class signUpForm extends Component {
     );
   }
 }
-const mapStateToProps = ({ SignUpReducer }) => {
-  return { _signUp: SignUpReducer };
+const mapStateToProps = ({ jobApplyReducer }) => {
+  return { _apply: jobApplyReducer };
 };
-export default connect(mapStateToProps, { login })(
+export default connect(mapStateToProps, { jobApplyAction })(
   withStyles(style)(signUpForm)
 );
-// export default signUpForm;

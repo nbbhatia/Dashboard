@@ -10,7 +10,7 @@ const middleware = require("./src/middlewares/index.middleware");
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3002",
   })
 );
 

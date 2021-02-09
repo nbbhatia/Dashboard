@@ -9,3 +9,7 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 export const AUTH_CHECK = "AUTH_CHECK";
 export const AUTH_CHECK_SUCCESS = "AUTH_CHECK_SUCCESS";
 export const AUTH_CHECK_ERROR = "AUTH_CHECK_ERROR";
+
+export const APPLY = "APPLY";
+export const APPLY_SUCCESS = "APPLY_SUCCESS";
+export const APPLY_ERROR = "APPLY_ERROR";

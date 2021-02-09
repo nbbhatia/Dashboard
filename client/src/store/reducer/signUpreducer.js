@@ -36,3 +36,15 @@ export const authCheckReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const jobApplyReducer = (state = {}, action) => {
+  const response = action.data;
+  switch (action.type) {
+    case types.APPLY_SUCCESS:
+      return response;
+    case types.APPLY_ERROR:
+      return state;
+    default:
+      return state;
+  }
+};
