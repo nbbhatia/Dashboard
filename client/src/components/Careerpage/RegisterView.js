@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Formik } from "formik";
-import { Grid, Typography, Drawer, IconButton } from "@material-ui/core";
-// import { withRouter } from "react-router";
+import { Grid, Dialog } from "@material-ui/core";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import Form from "./registerform";
-// import { validation } from "./validation.js";
+
 import { jobApplyAction } from "../../store/action/signupaction";
 const style = (theme) => ({
   paper: {
@@ -54,8 +53,8 @@ class signUpForm extends Component {
   };
 
   render() {
-    const { _apply } = this.props;
-    console.log("_apply", _apply);
+    const { _apply, open, onClose } = this.props;
+
     const initialval = {
       firstName: "",
       lastName: "",
@@ -68,7 +67,6 @@ class signUpForm extends Component {
     };
 
     const handleSubmit = (val) => {
-      console.log("val", val);
       this.props.jobApplyAction({
         firstName: val.firstName,
         lastName: val.lastName,
@@ -83,14 +81,17 @@ class signUpForm extends Component {
       this.setState({
         submit: true,
       });
+      onClose();
     };
 
     return (
       <Grid md={12} sm={12} xs={12} item container justify="center">
         <Grid md={8} item container justify="center">
-          <Formik initialValues={initialval} onSubmit={handleSubmit}>
-            {(props) => <Form {...props} />}
-          </Formik>
+          <Dialog open={open} onClose={onClose}>
+            <Formik initialValues={initialval} onSubmit={handleSubmit}>
+              {(props) => <Form {...props} />}
+            </Formik>
+          </Dialog>
         </Grid>
       </Grid>
     );
