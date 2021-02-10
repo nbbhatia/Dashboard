@@ -4,6 +4,7 @@ import DashboardLayout from "src/layouts/DashboardLayout";
 import MainLayout from "src/layouts/MainLayout";
 import AccountView from "src/views/account/AccountView";
 import Career from "src/views/careers/CareerIndex";
+import GetAllOpening from "src/views/careers/getAllvacancy";
 import CustomerListView from "src/views/customer/CustomerListView";
 import DashboardView from "src/views/reports/DashboardView";
 import LoginView from "src/views/auth/LoginView";
@@ -32,11 +33,13 @@ const MyApp = () => {
       element: <DashboardLayout />,
       children: [
         { path: "account", element: <AccountView /> },
-        { path: "customers", element: <CustomerListView /> },
+        // { path: "customers", element: <CustomerListView /> },
         { path: "dashboard", element: isLoggedIn ? <DashboardView /> : null },
         { path: "products", element: <ProductListView /> },
-        { path: "settings", element: <SettingsView /> },
+        // { path: "settings", element: <SettingsView /> },
+
         { path: "careers", element: <Career /> },
+        { path: "allOpening", element: <GetAllOpening /> },
         { path: "*", element: <Navigate to="/404" /> },
       ],
     },
