@@ -1,9 +1,15 @@
 import { put, call } from "redux-saga/effects";
-import { signUp, LoginService, authCheckService } from "../service/signUp";
+import {
+  signUp,
+  LoginService,
+  authCheckService,
+  openVacancyService,
+} from "../service/signUp";
 import {
   signUpSuccess,
   loginSucess,
   authCheckSucess,
+  openVacancySucess,
 } from "../action/signupaction";
 import * as types from "../action.type";
 export function* signUpSaga(data) {
@@ -35,5 +41,14 @@ export function* authCheckSaga(data) {
     yield put(authCheckSucess(response.data));
   } else {
     yield put({ type: types.AUTH_CHECK_ERROR, response });
+  }
+}
+
+export function* openVacancySaga(data) {
+  const response = yield call(openVacancyService, data);
+  if (response && !response.error) {
+    yield put(openVacancySucess(response.data));
+  } else {
+    yield put({ type: types.OPENVACANCY_ERROR, response });
   }
 }

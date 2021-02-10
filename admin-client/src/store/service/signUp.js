@@ -48,3 +48,17 @@ export const authCheckService = (req) => {
       return err.response;
     });
 };
+
+export const openVacancyService = (req) => {
+  return axios({
+    withCredentials: true,
+    method: "POST",
+    url: "http://localhost:8000/api/career/openPositions",
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      return err.response;
+    });
+};

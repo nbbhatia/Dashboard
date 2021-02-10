@@ -36,3 +36,17 @@ export const authCheckReducer = (state = {}, action) => {
       return state;
   }
 };
+
+// OPEN VACANCY
+export const openVacancy = (state = {}, action) => {
+  const response = action.data;
+
+  switch (action.type) {
+    case types.OPENVACANCY_SUCCESS:
+      return response;
+    case types.OPENVACANCY_ERROR:
+      return state;
+    default:
+      return state;
+  }
+};

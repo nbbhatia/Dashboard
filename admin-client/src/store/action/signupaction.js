@@ -60,3 +60,24 @@ export const authCheckError = (data) => {
     data,
   };
 };
+
+// open vacancy
+export const openVacancy = (data) => {
+  return {
+    type: types.OPENVACANCY,
+    data,
+  };
+};
+export const openVacancySucess = (data) => {
+  return {
+    type: types.OPENVACANCY_SUCCESS,
+    data,
+  };
+};
+
+export const openVacancyError = (data) => {
+  return {
+    type: types.OPENVACANCY_ERROR,
+    data,
+  };
+};
