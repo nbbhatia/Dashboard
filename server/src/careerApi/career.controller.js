@@ -1,19 +1,9 @@
 const router = new require("express").Router();
 const CareerModel = require("./model/model");
+const openVacancy = require("./model/openVacancymodel");
 const JobApply = async (req, res, next) => {
   try {
-    // const result = await new CareerModel({
-    //   firstName,
-    //   lastName,
-    //   email,
-    //   phoneNumber,
-    //   Qualification,
-    //   totalExperince,
-    //   currentCTC,
-    //   expectedCTC,
-    // }).save();
     let data = new CareerModel(req.body);
-    console.log("data", data);
     const result = await data.save();
     return res.json({
       message: "application submited successfully",
@@ -23,6 +13,21 @@ const JobApply = async (req, res, next) => {
     next(err);
   }
 };
+const opening = async (req, res, next) => {
+  try {
+    const data = new openVacancy(req.body);
+    console.log("data", data);
+    await data.save();
+
+    return res.json({
+      message: "vacancy added successfully",
+      status: 200,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
 module.exports = {
   JobApply,
+  opening,
 };
