@@ -16,7 +16,6 @@ const JobApply = async (req, res, next) => {
 const opening = async (req, res, next) => {
   try {
     const data = new openVacancy(req.body);
-    console.log("data", data);
     await data.save();
 
     return res.json({
@@ -27,7 +26,16 @@ const opening = async (req, res, next) => {
     next(err);
   }
 };
+const getAllVacancy = async (req, res, next) => {
+  try {
+    const result = await openVacancy.find();
+    return res.status(200).send(result);
+  } catch (err) {
+    next(err);
+  }
+};
 module.exports = {
   JobApply,
   opening,
+  getAllVacancy,
 };

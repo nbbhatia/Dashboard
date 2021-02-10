@@ -81,3 +81,23 @@ export const openVacancyError = (data) => {
     data,
   };
 };
+// get all opening
+export const getAllVacancy = (data) => {
+  return {
+    type: types.GETVACANCY,
+    data,
+  };
+};
+export const getAllVacancySuccess = (data) => {
+  return {
+    type: types.GETVACANCY_SUCCESS,
+    data,
+  };
+};
+
+export const getAllVacancyError = (data) => {
+  return {
+    type: types.GETVACANCY_ERROR,
+    data,
+  };
+};

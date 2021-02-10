@@ -5,7 +5,8 @@ import MainLayout from "src/layouts/MainLayout";
 import AccountView from "src/views/account/AccountView";
 import Career from "src/views/careers/CareerIndex";
 import GetAllOpening from "src/views/careers/getAllvacancy";
-import CustomerListView from "src/views/customer/CustomerListView";
+import ListAllOpening from "src/views/careers/getAllOpening";
+// import CustomerListView from "src/views/customer/CustomerListView";
 import DashboardView from "src/views/reports/DashboardView";
 import LoginView from "src/views/auth/LoginView";
 import NotFoundView from "src/views/errors/NotFoundView";
@@ -40,6 +41,7 @@ const MyApp = () => {
 
         { path: "careers", element: <Career /> },
         { path: "allOpening", element: <GetAllOpening /> },
+        { path: "listAllVacancy", element: <ListAllOpening /> },
         { path: "*", element: <Navigate to="/404" /> },
       ],
     },

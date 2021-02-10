@@ -3,9 +3,9 @@ import React from "react";
 // import data from "../customer/CustomerListView/data";
 
 let data = [
-  { href: "/app/allOpening", title: "Careers" },
+  { href: "/app/listAllVacancy", title: "Careers" },
   { href: "/allApplications", title: "Applications" },
-  { href: "/add opening", title: "Add Opening" },
+  { href: "/app/allOpening", title: "Add Opening" },
 ];
 const CareerIndex = () => {
   return (

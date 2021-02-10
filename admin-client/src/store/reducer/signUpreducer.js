@@ -38,13 +38,25 @@ export const authCheckReducer = (state = {}, action) => {
 };
 
 // OPEN VACANCY
-export const openVacancy = (state = {}, action) => {
+export const openVacancyReducer = (state = {}, action) => {
   const response = action.data;
 
   switch (action.type) {
     case types.OPENVACANCY_SUCCESS:
       return response;
     case types.OPENVACANCY_ERROR:
+      return state;
+    default:
+      return state;
+  }
+};
+export const getAllVacancyReducer = (state = {}, action) => {
+  const response = action.data;
+
+  switch (action.type) {
+    case types.GETVACANCY_SUCCESS:
+      return response;
+    case types.GETVACANCY_ERROR:
       return state;
     default:
       return state;

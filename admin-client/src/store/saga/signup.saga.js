@@ -4,12 +4,14 @@ import {
   LoginService,
   authCheckService,
   openVacancyService,
+  getAllVacancy,
 } from "../service/signUp";
 import {
   signUpSuccess,
   loginSucess,
   authCheckSucess,
   openVacancySucess,
+  getAllVacancySuccess,
 } from "../action/signupaction";
 import * as types from "../action.type";
 export function* signUpSaga(data) {
@@ -50,5 +52,14 @@ export function* openVacancySaga(data) {
     yield put(openVacancySucess(response.data));
   } else {
     yield put({ type: types.OPENVACANCY_ERROR, response });
+  }
+}
+
+export function* getVacancySaga(data) {
+  const response = yield call(getAllVacancy, data);
+  if (response && !response.error) {
+    yield put(getAllVacancySuccess(response.data));
+  } else {
+    yield put({ type: types.GETVACANCY_ERROR, response });
   }
 }
