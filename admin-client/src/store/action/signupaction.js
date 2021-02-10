@@ -101,3 +101,23 @@ export const getAllVacancyError = (data) => {
     data,
   };
 };
+// GET ALL APPLICATIONS
+export const getAllApplication = (data) => {
+  return {
+    type: types.GET_APLICATION,
+    data,
+  };
+};
+export const getAllApplicationSuccess = (data) => {
+  return {
+    type: types.GET_APLICATION_SUCCESS,
+    data,
+  };
+};
+
+export const getAllApplicationError = (data) => {
+  return {
+    type: types.GET_APLICATION_ERROR,
+    data,
+  };
+};

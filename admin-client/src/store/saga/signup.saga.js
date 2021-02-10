@@ -5,6 +5,7 @@ import {
   authCheckService,
   openVacancyService,
   getAllVacancy,
+  getAllApplication,
 } from "../service/signUp";
 import {
   signUpSuccess,
@@ -12,6 +13,7 @@ import {
   authCheckSucess,
   openVacancySucess,
   getAllVacancySuccess,
+  getAllApplicationSuccess,
 } from "../action/signupaction";
 import * as types from "../action.type";
 export function* signUpSaga(data) {
@@ -61,5 +63,14 @@ export function* getVacancySaga(data) {
     yield put(getAllVacancySuccess(response.data));
   } else {
     yield put({ type: types.GETVACANCY_ERROR, response });
+  }
+}
+
+export function* getApplicationSaga(data) {
+  const response = yield call(getAllApplication, data);
+  if (response && !response.error) {
+    yield put(getAllApplicationSuccess(response.data));
+  } else {
+    yield put({ type: types.GET_APLICATION_ERROR, response });
   }
 }

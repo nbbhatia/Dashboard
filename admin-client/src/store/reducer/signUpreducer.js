@@ -62,3 +62,15 @@ export const getAllVacancyReducer = (state = {}, action) => {
       return state;
   }
 };
+export const getAllApplication = (state = {}, action) => {
+  const response = action.data;
+
+  switch (action.type) {
+    case types.GET_APLICATION_SUCCESS:
+      return response;
+    case types.GET_APLICATION_ERROR:
+      return state;
+    default:
+      return state;
+  }
+};

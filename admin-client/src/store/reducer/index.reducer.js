@@ -5,6 +5,7 @@ import {
   authCheckReducer,
   openVacancyReducer,
   getAllVacancyReducer,
+  getAllApplication,
 } from "./signUpreducer";
 const rootReducer = combineReducers({
   SignUpReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   authCheckReducer,
   openVacancyReducer,
   getAllVacancyReducer,
+  getAllApplication,
 });
 
 export default rootReducer;

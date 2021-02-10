@@ -6,6 +6,7 @@ import {
   authCheckSaga,
   openVacancySaga,
   getVacancySaga,
+  getApplicationSaga,
 } from "./signup.saga";
 function* watcher() {
   yield takeLatest(types.SIGN_UP, signUpSaga);
@@ -13,6 +14,7 @@ function* watcher() {
   yield takeLatest(types.AUTH_CHECK, authCheckSaga);
   yield takeLatest(types.OPENVACANCY, openVacancySaga);
   yield takeLatest(types.GETVACANCY, getVacancySaga);
+  yield takeLatest(types.GET_APLICATION, getApplicationSaga);
 }
 
 export default watcher;
