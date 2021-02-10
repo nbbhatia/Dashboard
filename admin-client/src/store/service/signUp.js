@@ -3,7 +3,7 @@ export const signUp = (req) => {
   let headers = new Headers();
   headers.append("Content-Type", "application/json");
   headers.append("Accept", "application/json");
-  headers.append("Origin", "*");
+  headers.append("Origin", "http://localhost:3000");
 
   return axios({
     withCredentials: true,
