@@ -82,7 +82,7 @@ export const getAllApplication = (req) => {
   return axios({
     withCredentials: true,
     method: "GET",
-    url: "http://localhost:8000/api/career/allVacancy",
+    url: "http://localhost:8000/api/career/allApplication",
     data: req.data,
   })
     .then((response) => {

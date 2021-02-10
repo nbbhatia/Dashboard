@@ -13,6 +13,14 @@ const JobApply = async (req, res, next) => {
     next(err);
   }
 };
+const getApplication = async (req, res) => {
+  try {
+    const result = await CareerModel.find();
+    return res.send(result);
+  } catch (err) {
+    next(err);
+  }
+};
 const opening = async (req, res, next) => {
   try {
     const data = new openVacancy(req.body);
@@ -38,4 +46,5 @@ module.exports = {
   JobApply,
   opening,
   getAllVacancy,
+  getApplication,
 };

@@ -4,7 +4,7 @@ import React from "react";
 
 let data = [
   { href: "/app/listAllVacancy", title: "Careers" },
-  { href: "/allApplications", title: "Applications" },
+  { href: "/app/allApplications", title: "Applications" },
   { href: "/app/allOpening", title: "Add Opening" },
 ];
 const CareerIndex = () => {
@@ -12,7 +12,10 @@ const CareerIndex = () => {
     <Grid container item md={12} xs={12} sm={12} justify="space-around">
       {data.map((obj, i) => (
         <Grid md={3}>
-          <Button variant="contained" style={{ marginTop: "2em" }}>
+          <Button
+            variant="contained"
+            style={{ marginTop: "2em", marginBottom: "2em" }}
+          >
             <a href={obj.href}>
               <Typography>{obj.title}</Typography>
             </a>

@@ -7,7 +7,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { getAllVacancy } from "../../store/action/signupaction";
+import { getAllApplication } from "../../store/action/signupaction";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -29,14 +29,14 @@ const useStyles = makeStyles({
 const SimpleCard = (props) => {
   const classes = useStyles();
   let AllVal = [];
-  const { _allOpening } = props;
+  const { _allApplication } = props;
 
-  AllVal.push(_allOpening);
-
+  AllVal.push(_allApplication);
+  // console.log("_allApplication", _allApplication);
   const bull = <span className={classes.bullet}>•</span>;
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(getAllVacancy());
+    dispatch(getAllApplication());
   }, []);
 
   return (
@@ -61,10 +61,13 @@ const SimpleCard = (props) => {
                         color="textSecondary"
                         gutterBottom
                       >
-                        {item.title}
+                        {item.firstName}
                       </Typography>
                       <Typography variant="h5" component="h2">
-                        {item.department}
+                        {item.email}
+                      </Typography>
+                      <Typography variant="h5" component="h2">
+                        {item.phoneNumber}
                       </Typography>
                     </CardContent>
                   </Card>
@@ -75,7 +78,7 @@ const SimpleCard = (props) => {
     </Grid>
   );
 };
-const mapStateToProps = ({ getAllVacancyReducer }) => {
-  return { _allOpening: getAllVacancyReducer };
+const mapStateToProps = ({ getAllApplication }) => {
+  return { _allApplication: getAllApplication };
 };
-export default connect(mapStateToProps, { getAllVacancy })(SimpleCard);
+export default connect(mapStateToProps, { getAllApplication })(SimpleCard);
