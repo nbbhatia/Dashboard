@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { useEffect } from "react";
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import {
   Avatar,
   Box,
@@ -10,47 +10,44 @@ import {
   Hidden,
   List,
   Typography,
-  makeStyles
-} from '@material-ui/core';
-import {
-  AlertCircle as AlertCircleIcon,
-  ShoppingBag as ShoppingBagIcon
-} from 'react-feather';
-import NavItem from './NavItem';
+  makeStyles,
+} from "@material-ui/core";
+import NavItem from "./NavItem";
 
 const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  name: 'GX Admin'
+  avatar: "/static/images/avatars/avatar_6.png",
+  name: "GX Admin",
 };
 
 const items = [
   {
-    href: '/app/products',
-    icon: ShoppingBagIcon,
-    title: 'Products'
+    href: "/app/products",
+    title: "Products",
   },
-
   {
-    href: '/404',
-    icon: AlertCircleIcon,
-    title: 'Error'
-  }
+    href: "/app/careers",
+    title: "Careers",
+  },
+  // {
+  //   href: "/404",
+  //   title: "Error",
+  // },
 ];
 
 const useStyles = makeStyles(() => ({
   mobileDrawer: {
-    width: 256
+    width: 256,
   },
   desktopDrawer: {
     width: 256,
     top: 64,
-    height: 'calc(100% - 64px)'
+    height: "calc(100% - 64px)",
   },
   avatar: {
-    cursor: 'pointer',
+    cursor: "pointer",
     width: 64,
-    height: 64
-  }
+    height: 64,
+  },
 }));
 
 const NavBar = ({ onMobileClose, openMobile }) => {
@@ -130,12 +127,12 @@ const NavBar = ({ onMobileClose, openMobile }) => {
 
 NavBar.propTypes = {
   onMobileClose: PropTypes.func,
-  openMobile: PropTypes.bool
+  openMobile: PropTypes.bool,
 };
 
 NavBar.defaultProps = {
   onMobileClose: () => {},
-  openMobile: false
+  openMobile: false,
 };
 
 export default NavBar;

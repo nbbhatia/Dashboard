@@ -3,6 +3,7 @@ import { Navigate, useRoutes } from "react-router-dom";
 import DashboardLayout from "src/layouts/DashboardLayout";
 import MainLayout from "src/layouts/MainLayout";
 import AccountView from "src/views/account/AccountView";
+import Career from "src/views/careers/CareerIndex";
 import CustomerListView from "src/views/customer/CustomerListView";
 import DashboardView from "src/views/reports/DashboardView";
 import LoginView from "src/views/auth/LoginView";
@@ -35,6 +36,7 @@ const MyApp = () => {
         { path: "dashboard", element: isLoggedIn ? <DashboardView /> : null },
         { path: "products", element: <ProductListView /> },
         { path: "settings", element: <SettingsView /> },
+        { path: "careers", element: <Career /> },
         { path: "*", element: <Navigate to="/404" /> },
       ],
     },
