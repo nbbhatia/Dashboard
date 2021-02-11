@@ -4,6 +4,7 @@ const openVacancy = require("./model/openVacancymodel");
 const JobApply = async (req, res, next) => {
   try {
     let data = new CareerModel(req.body);
+    console.log("data", data);
     const result = await data.save();
     return res.json({
       message: "application submited successfully",

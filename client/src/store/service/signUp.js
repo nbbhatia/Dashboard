@@ -70,3 +70,18 @@ export const jobApply = (req) => {
       return err.response;
     });
 };
+
+export const getAllVacancy = (req) => {
+  return axios({
+    withCredentials: true,
+    method: "GET",
+    url: "http://localhost:8000/api/career/allVacancy",
+    data: req.data,
+  })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      return err.response;
+    });
+};

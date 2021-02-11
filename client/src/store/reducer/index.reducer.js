@@ -4,12 +4,14 @@ import {
   LoginReducer,
   authCheckReducer,
   jobApplyReducer,
+  getAllVacancyReducer,
 } from "./signUpreducer";
 const rootReducer = combineReducers({
   SignUpReducer,
   LoginReducer,
   authCheckReducer,
   jobApplyReducer,
+  getAllVacancyReducer,
 });
 
 export default rootReducer;

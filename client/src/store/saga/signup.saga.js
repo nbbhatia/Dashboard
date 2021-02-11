@@ -4,12 +4,14 @@ import {
   LoginService,
   authCheckService,
   jobApply,
+  getAllVacancy,
 } from "../service/signUp";
 import {
   signUpSuccess,
   loginSucess,
   authCheckSucess,
   jobApplySuccessAction,
+  getAllVacancySuccess,
 } from "../action/signupaction";
 import * as types from "../action.type";
 export function* signUpSaga(data) {
@@ -50,5 +52,14 @@ export function* jobApplySaga(data) {
     yield put(jobApplySuccessAction(response.data));
   } catch (error) {
     yield put({ type: types.APPLY_ERROR, error });
+  }
+}
+
+export function* getVacancySaga(data) {
+  const response = yield call(getAllVacancy, data);
+  if (response && !response.error) {
+    yield put(getAllVacancySuccess(response.data));
+  } else {
+    yield put({ type: types.GETVACANCY_ERROR, response });
   }
 }

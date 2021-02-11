@@ -3,12 +3,13 @@ import React, { useState } from "react";
 // import { Grid } from "@material-ui/core";
 import Banner from "../../assets/boy-reading-studying-books.jpg";
 import CareerForm from "../Careerpage/RegisterView";
+import VacancyCard from "./getAlvacancy";
 const Landing = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
-  const handleclose = () => {
+  const handleClose = () => {
     setOpen(false);
   };
   return (
@@ -23,9 +24,10 @@ const Landing = () => {
         variant="contained"
         style={{ background: "tomato", margin: "50px 0px" }}
       >
-        <Typography>Resume</Typography>
+        {/* <Typography>Resume</Typography> */}
       </Button>
-      <CareerForm open={open} onClose={handleclose} />
+      <VacancyCard />
+      <CareerForm open={open} onClose={handleClose} />
     </div>
   );
 };

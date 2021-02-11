@@ -48,3 +48,16 @@ export const jobApplyReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const getAllVacancyReducer = (state = {}, action) => {
+  const response = action.data;
+
+  switch (action.type) {
+    case types.GETVACANCY_SUCCESS:
+      return response;
+    case types.GETVACANCY_ERROR:
+      return state;
+    default:
+      return state;
+  }
+};

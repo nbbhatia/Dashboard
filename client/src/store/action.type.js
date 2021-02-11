@@ -13,3 +13,7 @@ export const AUTH_CHECK_ERROR = "AUTH_CHECK_ERROR";
 export const APPLY = "APPLY";
 export const APPLY_SUCCESS = "APPLY_SUCCESS";
 export const APPLY_ERROR = "APPLY_ERROR";
+
+export const GETVACANCY = "GETVACANCY";
+export const GETVACANCY_SUCCESS = "GETVACANCY_SUCCESS";
+export const GETVACANCY_ERROR = "GETVACANCY_ERROR";

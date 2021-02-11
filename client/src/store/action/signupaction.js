@@ -80,3 +80,23 @@ export const jobApplyErrorAction = (data) => {
     data,
   };
 };
+export const getAllVacancy = (data) => {
+  return {
+    type: types.GETVACANCY,
+    data,
+  };
+};
+export const getAllVacancySuccess = (data) => {
+  console.log("data", data);
+  return {
+    type: types.GETVACANCY_SUCCESS,
+    data,
+  };
+};
+
+export const getAllVacancyError = (data) => {
+  return {
+    type: types.GETVACANCY_ERROR,
+    data,
+  };
+};
