@@ -39,6 +39,7 @@ export const authCheckReducer = (state = {}, action) => {
 
 export const jobApplyReducer = (state = {}, action) => {
   const response = action.data;
+  console.log("actionjobApplyReducer", response);
   switch (action.type) {
     case types.APPLY_SUCCESS:
       return response;

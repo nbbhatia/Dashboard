@@ -53,7 +53,7 @@ class signUpForm extends Component {
   };
 
   render() {
-    const { _apply, open, onClose } = this.props;
+    const { _apply, open, onClose, JobId } = this.props;
 
     const initialval = {
       firstName: "",
@@ -76,18 +76,18 @@ class signUpForm extends Component {
         totalExperince: val.totalExperince,
         currentCTC: val.currentCTC,
         expectedCTC: val.expectedCTC,
+        job: JobId,
       });
 
       this.setState({
         submit: true,
       });
-      onClose();
     };
 
     return (
       <Grid md={12} sm={12} xs={12} item container justify="center">
         <Grid md={8} item container justify="center">
-          <Dialog open={open} onClose={onClose}>
+          <Dialog open={open} close={onClose}>
             <Formik initialValues={initialval} onSubmit={handleSubmit}>
               {(props) => <Form {...props} />}
             </Formik>

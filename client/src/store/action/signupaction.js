@@ -62,6 +62,7 @@ export const authCheckError = (data) => {
 };
 
 export const jobApplyAction = (data) => {
+  console.log("data", data);
   return {
     type: types.APPLY,
     data,

@@ -28,5 +28,9 @@ const careerModel = new Schema({
   expectedCTC: {
     type: Number,
   },
+  job: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
 });
 module.exports = new model("CareerApplications", careerModel);

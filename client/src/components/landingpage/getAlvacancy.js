@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, connect } from "react-redux";
 import { Grid } from "@material-ui/core";
@@ -6,6 +6,7 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
+import CareerForm from "../Careerpage/RegisterView";
 import Typography from "@material-ui/core/Typography";
 import { getAllVacancy } from "../../store/action/signupaction";
 const useStyles = makeStyles({
@@ -32,17 +33,22 @@ const SimpleCard = (props) => {
   const classes = useStyles();
   let AllVal = [];
   const { _allOpening } = props;
-
+  const [open, setOpen] = useState(false);
+  const [Id, setId] = useState();
   AllVal.push(_allOpening);
 
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(getAllVacancy());
   }, []);
-  const handleClick = (id) => {
-    console.log("id", id);
-  };
 
+  const handleOpen = (id) => {
+    setId(id);
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Grid
       md={12}
@@ -61,7 +67,7 @@ const SimpleCard = (props) => {
                   <Card className={classes.root}>
                     <CardContent>
                       <Button
-                        onClick={() => handleClick(item._id)}
+                        onClick={() => handleOpen(item._id)}
                         style={{ textTransform: "none" }}
                       >
                         <Typography
@@ -81,6 +87,7 @@ const SimpleCard = (props) => {
               ))
           )
         : ""}
+      <CareerForm open={open} onClose={handleClose} JobId={Id} />
     </Grid>
   );
 };

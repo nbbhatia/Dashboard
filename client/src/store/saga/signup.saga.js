@@ -46,6 +46,7 @@ export function* authCheckSaga(data) {
   }
 }
 export function* jobApplySaga(data) {
+  console.log("datasaga", data);
   try {
     const response = yield call(jobApply, data);
 

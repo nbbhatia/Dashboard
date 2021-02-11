@@ -1,15 +1,26 @@
+const { ObjectId } = require("mongoose").Types;
 const router = new require("express").Router();
 const CareerModel = require("./model/model");
 const openVacancy = require("./model/openVacancymodel");
 const JobApply = async (req, res, next) => {
   try {
-    let data = new CareerModel(req.body);
+    let data = req.body;
     console.log("data", data);
-    const result = await data.save();
-    return res.json({
-      message: "application submited successfully",
-      user: result,
-    });
+    const isMatch = await openVacancy.findOne({ _id: ObjectId(data.job) });
+    if (!isMatch) {
+      return res.json({
+        message: "userNot Found",
+        status: 300,
+      });
+    } else {
+      let d = new CareerModel(data);
+      const result = await d.save();
+      return res.json({
+        message: "data save succefully",
+        status: 200,
+        user: result,
+      });
+    }
   } catch (err) {
     next(err);
   }
